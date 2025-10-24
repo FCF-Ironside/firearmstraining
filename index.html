@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Harvest Firearms Training | NRA Certified Courses</title>
     
-    <meta name="description" content="The Harvest Firearms Training provides NRA Certified training courses including Basic Rifle, Black Powder, Muzzleloading, RSO, and CA DOJ FSC, Firearm Safety Certificate in Bakersfield, California. Schedule your firearm safety class today.">
-    <meta name="keywords" content="NRA certified instructor, NRA, The Harvest, Christian, Firearm Training, firearms training, Firearm Safety Certificate, firearm safety, Christian firearm training, gun safety class,Bakersfield, Bakersfield California, Basic Rifle, Muzzleloading, Range Safety Officer, RSO, CA DOJ FSC">
+    <meta name="description" content="The Harvest Firearms Training provides NRA Certified training courses including Basic Rifle, Muzzleloading, RSO, and CA DOJ FSC in Bakersfield, California. Schedule your firearm safety class today.">
+    <meta name="keywords" content="NRA certified instructor, The Harvest, Christian firearm training, gun safety class, Bakersfield California, Basic Rifle, Muzzleloading, Range Safety Officer, RSO, CA DOJ FSC">
     
     <link rel="icon" type="image/png" href="inst-color.jpg">
     
@@ -84,6 +84,20 @@
         <p class="text-xs mt-1">If no courses are currently scheduled, please email <a href="mailto:instructor@ironsidefirearm.com" class="text-accent-red hover:underline font-semibold">TheHarvestFirearmsTraining@outlook.com</a> or call <a href="tel:+19495473698" class="text-accent-red hover:underline font-semibold">(949) 547-3698</a> to schedule a future course date.</p>
     </footer>
 
+    <div id="age-gate-modal" class="fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-center justify-center p-4">
+        <div class="bg-card-bg p-8 md:p-10 rounded-xl max-w-lg w-full text-center border-t-4 border-accent-red shadow-2xl">
+            <h2 class="text-3xl font-extrabold mb-4 text-accent-red">Age Verification Required</h2>
+            <p class="text-lg text-primary-dark-text mb-6">
+                By clicking the button below, you confirm that you are **18 years of age or older** and may legally view content related to firearms training and courses.
+            </p>
+            <p class="text-sm text-gray-400 mb-8">
+                This verification is a requirement for viewing this website's content.
+            </p>
+            <button id="age-gate-button" type="button" class="bg-accent-red text-black font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white transition duration-200 text-lg">
+                I Am 18 Years of Age or Older
+            </button>
+        </div>
+    </div>
     <script>
         // --- DYNAMIC COURSE DATA STORAGE ---
         const COURSE_DATA = {
@@ -100,7 +114,7 @@
                     "Professional Supervision: Instruction is provided by NRA Certified Muzzle Loader Instructors. The firing lines are supervised by certified Range Safety Officers (RSO) and Chief Range Safety Officers (CRSOs) to ensure a safe and productive learning environment."
                 ],
                 dates: [
-                                     	
+                                                	
 		{	date: "Monday November 24th, 2025 (8:00 AM)",
 			link: "https://www.nrainstructors.org/CourseDetails.aspx?Courseid=893942" },
 
@@ -288,7 +302,7 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                 
                 <div class="max-w-3xl mx-auto card bg-card-bg p-8 rounded-xl border-t-4 border-marine-navy shadow-xl mb-12">
                     <div class="flex justify-center items-center space-x-6 mb-6">
-                         <img src="inst-color.jpg" alt="NRA Certified Instructor Logo" class="h-48 w-auto border-2 border-accent-red rounded-lg p-1">
+                       <img src="inst-color.jpg" alt="NRA Certified Instructor Logo" class="h-48 w-auto border-2 border-accent-red rounded-lg p-1">
                         
                         <img src="crso-color.jpg" alt="NRA Chief Range Safety Officer Logo" class="h-48 w-auto border-2 border-accent-red rounded-lg p-1">
                     </div>
@@ -441,13 +455,40 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
             });
         });
 
-        // Initial page load: Render the content immediately.
-        renderPage(); 
+        // --- NEW AGE GATE LOGIC ---
+        const ageGateModal = document.getElementById('age-gate-modal');
+        const ageGateButton = document.getElementById('age-gate-button');
+
+        const initializeApp = () => {
+            if (sessionStorage.getItem('ageVerified') === 'true') {
+                // User is already verified, hide modal and render page
+                ageGateModal.classList.add('hidden');
+                renderPage();
+            } else {
+                // User needs to verify age
+                ageGateModal.classList.remove('hidden');
+
+                // Add event listener to the verification button
+                ageGateButton.addEventListener('click', () => {
+                    sessionStorage.setItem('ageVerified', 'true');
+                    ageGateModal.classList.add('hidden');
+                    // Once verified, render the initial page content
+                    renderPage();
+                });
+                
+                // Ensure the verification button is initially focused for accessibility
+                setTimeout(() => {
+                    ageGateButton.focus();
+                }, 10);
+            }
+        };
+
+        // Initial page load: Run the initialization function
+        initializeApp(); 
+        // NOTE: The previous renderPage() call is now inside initializeApp()
+        // and only runs after age verification.
 
     </script>
 
 </body>
-
 </html>
-
-
