@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Harvest Firearms Training | NRA Certified Courses</title>
-    
+   
     <meta name="description" content="The Harvest Firearms Training provides NRA Certified training courses including Basic Rifle, Muzzleloading, RSO, and CA DOJ FSC in Bakersfield, California. Schedule your firearm safety class today.">
     <meta name="keywords" content="NRA certified instructor, The Harvest, Christian firearm training, gun safety class, Bakersfield California, Basic Rifle, Muzzleloading, Range Safety Officer, RSO, CA DOJ FSC">
-    
+   
     <link rel="icon" type="image/png" href="inst-color.jpg">
-    
+   
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Apply Inter font and set base styles */
@@ -22,7 +22,7 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
         }
         /* Marine Corps Theme Colors (still used for utility classes) */
-        .marine-navy { background-color: #003366; } /* Deep Navy Blue */
+        /* FIX: Removed .marine-navy class definition to rely entirely on Tailwind utility classes below */
         /* FIX: Changed marine-scarlet (used by homeCourseLink) to Bright Green */
         .marine-scarlet { color: #33FF33; } 
     </style>
@@ -45,7 +45,7 @@
 </head>
 <body class="bg-[#1a1a1a] text-primary-dark-text">
 
-    <header class="marine-navy text-white shadow-lg sticky top-0 z-50">
+    <header class="bg-marine-navy text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <a href="#home" class="text-xl sm:text-lg font-extrabold tracking-tight whitespace-nowrap overflow-hidden">
@@ -68,7 +68,7 @@
                             <a href="#rso" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">NRA Range Safety Officer (RSO) Course</a>
                             <a href="#basic-rifle" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">NRA Basic Rifle Course</a>
                             <a href="#fsc" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">CA DOJ FSC Course</a>
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,27 +79,11 @@
         <h1 class="text-2xl font-bold text-center text-gray-400 mt-12">Loading...</h1>
     </main>
 
-    <footer class="marine-navy text-white text-center p-4">
+    <footer class="bg-marine-navy text-white text-center p-4">
         <p class="text-sm">&copy; 2025 The Harvest Firearms Training Professionals. All Rights Reserved. NRA Certified Instruction. Serving Bakersfield, California.</p>
         <p class="text-xs mt-1">If no courses are currently scheduled, please email <a href="mailto:instructor@ironsidefirearm.com" class="text-accent-red hover:underline font-semibold">TheHarvestFirearmsTraining@outlook.com</a> or call <a href="tel:+19495473698" class="text-accent-red hover:underline font-semibold">(949) 547-3698</a> to schedule a future course date.</p>
     </footer>
 
-    <div id="age-gate-modal" class="fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-center justify-center p-4">
-        <div class="bg-card-bg p-8 md:p-10 rounded-xl max-w-lg w-full text-center border-t-4 border-accent-red shadow-2xl">
-            <h2 class="text-3xl font-extrabold mb-4 text-accent-red">Age Verification Required</h2>
-            <p class="text-lg text-primary-dark-text mb-6">
-               On June 30, 2022, Governer Gavin Newsom signed Assembly Bill No. 2571 into law, prohibiting firearms industry members from advertising to minors.
-
-To proceed, please verify that you are 18 or older.
-            </p>
-            <p class="text-sm text-gray-400 mb-8">
-                This verification is a requirement for viewing this website's content.
-            </p>
-            <button id="age-gate-button" type="button" class="bg-accent-red text-black font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white transition duration-200 text-lg">
-                I Am 18 Years of Age or Older
-            </button>
-        </div>
-    </div>
     <script>
         // --- DYNAMIC COURSE DATA STORAGE ---
         const COURSE_DATA = {
@@ -116,11 +100,8 @@ To proceed, please verify that you are 18 or older.
                     "Professional Supervision: Instruction is provided by NRA Certified Muzzle Loader Instructors. The firing lines are supervised by certified Range Safety Officers (RSO) and Chief Range Safety Officers (CRSOs) to ensure a safe and productive learning environment."
                 ],
                 dates: [
-                                                	
 		{	date: "Monday November 24th, 2025 (8:00 AM)",
 			link: "https://www.nrainstructors.org/CourseDetails.aspx?Courseid=893942" },
-
-                    
                 ]
             },
             'rso': {
@@ -180,9 +161,9 @@ To proceed, please verify that you are 18 or older.
             const data = COURSE_DATA[routeKey];
             const deposit = data.deposit;
             const dates = data.dates;
-            
+           
             let logoImageTag = '';
-            
+           
             // Check for RSO/CRSO special case
             if (routeKey === 'rso' && data.logo && data.secondaryLogo) {
                 // RSO and CRSO logos side-by-side (using h-48 for bigger size)
@@ -198,7 +179,7 @@ To proceed, please verify that you are 18 or older.
                     <img src="${data.logo}" alt="${data.title} Instructor Logo" class="h-48 w-auto mx-auto mb-4 border-2 border-accent-red rounded-lg p-1">
                 `;
             } // If data.logo is empty (like FSC), logoImageTag is ''
-            
+           
             const depositNote = data.price === data.deposit
                 ? 'The full course fee is required upfront to secure your position.'
                 : 'The remaining balance is due on the first day of the course.';
@@ -211,10 +192,10 @@ To proceed, please verify that you are 18 or older.
                     </a>
                 `).join('')
                 : `<p class="text-center text-xl font-bold text-accent-red py-8">
-                    No dates are currently scheduled for this course. Please check back soon or contact us to schedule future instruction! 
+                    No dates are currently scheduled for this course. Please contact us to schedule a date for instruction! 
 <br>
 <br>
-Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-accent-red py-8">(949) 547-3698</a><br> or  <br><a href="mailto:TheHarvestFirearmsTraining@outlook.com" class="text-center text-xl font-bold text-accent-red py-8">Email: <u>TheHarvestFirearmsTraining@outlook.com</a></u>
+Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-accent-red py-8">(949) 547-3698</a><br> or <br><a href="mailto:TheHarvestFirearmsTraining@outlook.com" class="text-center text-xl font-bold text-accent-red py-8">Email: <u>TheHarvestFirearmsTraining@outlook.com</a></u>
 
                     </p>`;
 
@@ -224,14 +205,14 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         Back to All Courses in Bakersfield, CA
                     </a>
-                    
+                   
                     <h1 class="text-4xl font-extrabold mb-8 text-center text-primary-dark-text">${data.title}</h1>
-                
+               
                     <div class="card bg-card-bg p-6 md:p-8 rounded-lg mb-8 transition duration-300 hover:shadow-xl border-t-4 border-accent-red">
                         <div class="text-center">
                             ${logoImageTag} </div>
                         <h2 class="text-2xl font-bold mb-3 text-accent-red">${data.title} Course Overview - Bakersfield, CA</h2> <p class="text-gray-400 mb-6">${data.description}</p>
-                        
+                       
                         <div class="mb-6 space-y-2">
                             <p class="text-lg font-semibold">Course Fee: <span class="text-primary-dark-text">$${data.price}.00</span></p>
                             <p class="text-sm text-gray-300">Required Deposit: <span class="font-bold text-accent-red">$${data.deposit}.00 non-refundable</span></p>
@@ -269,7 +250,7 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                 </div>
             `;
         }
-        
+       
         // Contact Card Template (unchanged)
         const contactCard = () => `
             <div class="card bg-card-bg p-6 md:p-8 rounded-lg mb-12 transition duration-300 border-t-4 border-marine-navy shadow-xl">
@@ -301,16 +282,16 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                         Your source for NRA Certified Training Courses in Bakersfield, California. Start your training today! 
                     </p>
                 </div>
-                
+               
                 <div class="max-w-3xl mx-auto card bg-card-bg p-8 rounded-xl border-t-4 border-marine-navy shadow-xl mb-12">
                     <div class="flex justify-center items-center space-x-6 mb-6">
                        <img src="inst-color.jpg" alt="NRA Certified Instructor Logo" class="h-48 w-auto border-2 border-accent-red rounded-lg p-1">
-                        
+                       
                         <img src="crso-color.jpg" alt="NRA Chief Range Safety Officer Logo" class="h-48 w-auto border-2 border-accent-red rounded-lg p-1">
                     </div>
 
                     <h2 class="text-3xl font-bold text-primary-dark-text text-center mb-6">Welcome to The Harvest Firearms Training in Bakersfield, Ca</h2>
-                    
+                   
                     <p class="text-lg text-gray-400 mb-6 leading-relaxed">
                         Our team consists of experienced, certified professionals dedicated to teaching safe gun handling for anyone. We provide high-quality NRA-certified instruction focusing on responsibility and skill development for all experience levels, from beginners to advanced range officers.
                     </p>
@@ -331,7 +312,7 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
             'basic-rifle': () => courseCard('basic-rifle'),
             'fsc': () => courseCard('fsc'),
         };
-        
+       
         function homeCourseLink(title, hash, description) {
             // NOTE: .marine-scarlet is the class used to set the link color here
             return `
@@ -351,12 +332,14 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
         const contentDiv = document.getElementById('content');
         const dropdownMenu = document.getElementById('dropdown-menu');
         const dropdownButton = document.getElementById('dropdown-button');
-        const navLinks = dropdownMenu.querySelectorAll('.nav-link');
-        
+       
+        // Select nav links *after* the DOM is loaded
+        let navLinks = [];
+
         // Function to toggle the menu open/closed
         const toggleMenu = (isOpen) => {
             const isCurrentlyOpen = !dropdownMenu.classList.contains('hidden');
-            
+           
             if (isOpen === undefined) {
                 isOpen = !isCurrentlyOpen;
             }
@@ -407,7 +390,7 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
         // Function to render the current page
         const renderPage = () => {
             let hash = window.location.hash.substring(1) || 'home';
-            
+           
             if (!pages[hash]) {
                 hash = 'home';
             }
@@ -426,10 +409,12 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
             window.scrollTo(0, 0); 
         };
 
-        // Event listener for hash changes (back/forward navigation)
+        // --- Event Listeners and Initialization ---
+
+        // Event listener for hash changes (back/forward navigation, internal links)
         window.addEventListener('hashchange', renderPage);
 
-        // Event listener for the dropdown button (now uses toggleMenu)
+        // Event listener for the dropdown button
         dropdownButton.addEventListener('click', () => {
             toggleMenu();
         });
@@ -441,55 +426,36 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
         document.addEventListener('click', (event) => {
             const isClickInsideButton = dropdownButton.contains(event.target);
             const isClickInsideMenu = dropdownMenu.contains(event.target);
-            
+           
             if (!isClickInsideButton && !isClickInsideMenu && !dropdownMenu.classList.contains('hidden')) {
                 toggleMenu(false);
             }
         });
-        
-        // Add click listeners to all internal nav links to ensure smooth routing and close menu
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                // Ensure the hash changes correctly
-                const targetHash = link.getAttribute('href').substring(1);
-                window.location.hash = targetHash;
-                // renderPage() is called by hashchange, which handles closing the menu
-            });
-        });
-
-        // --- NEW AGE GATE LOGIC ---
-        const ageGateModal = document.getElementById('age-gate-modal');
-        const ageGateButton = document.getElementById('age-gate-button');
-
+       
+        // FIX: This function now runs immediately after the DOM loads
         const initializeApp = () => {
-            if (sessionStorage.getItem('ageVerified') === 'true') {
-                // User is already verified, hide modal and render page
-                ageGateModal.classList.add('hidden');
-                renderPage();
-            } else {
-                // User needs to verify age
-                ageGateModal.classList.remove('hidden');
-
-                // Add event listener to the verification button
-                ageGateButton.addEventListener('click', () => {
-                    sessionStorage.setItem('ageVerified', 'true');
-                    ageGateModal.classList.add('hidden');
-                    // Once verified, render the initial page content
-                    renderPage();
+            // Re-select nav links in case the DOM wasn't fully ready before
+            navLinks = dropdownMenu.querySelectorAll('.nav-link');
+           
+            // Add click listeners to all internal nav links to ensure smooth routing and close menu
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // Prevent default hash change behavior if we want to manually control it, 
+                    // but for SPA, setting location.hash is the cleanest way
+                    const targetHash = link.getAttribute('href').substring(1);
+                    window.location.hash = targetHash;
+                    // renderPage() is called by hashchange, which handles closing the menu
                 });
-                
-                // Ensure the verification button is initially focused for accessibility
-                setTimeout(() => {
-                    ageGateButton.focus();
-                }, 10);
-            }
+            });
+
+            // Directly render the initial page content (Home or whatever is in the hash)
+            renderPage();
         };
 
-        // Initial page load: Run the initialization function
-        initializeApp(); 
-        // NOTE: The previous renderPage() call is now inside initializeApp()
-        // and only runs after age verification.
-
+        // Initial page load: Run the initialization function when the DOM is ready
+        document.addEventListener('DOMContentLoaded', initializeApp);
+        // Fallback for immediate execution if DOMContentLoaded already fired or if just running the script
+        initializeApp();
     </script>
 
 </body>
