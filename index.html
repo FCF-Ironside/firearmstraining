@@ -84,7 +84,21 @@
         <p class="text-xs mt-1">If no courses are currently scheduled, please email <a href="mailto:instructor@ironsidefirearm.com" class="text-accent-red hover:underline font-semibold">TheHarvestFirearmsTraining@outlook.com</a> or call <a href="tel:+19495473698" class="text-accent-red hover:underline font-semibold">(949) 547-3698</a> to schedule a future course date.</p>
     </footer>
 
-   
+    <div id="age-gate-modal" class="fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-center justify-center p-4">
+        <div class="bg-card-bg p-8 md:p-10 rounded-xl max-w-lg w-full text-center border-t-4 border-accent-red shadow-2xl">
+            <h2 class="text-3xl font-extrabold mb-4 text-accent-red">Age Verification Required</h2>
+            <p class="text-lg text-primary-dark-text mb-6">
+               On June 30, 2022, Governer Gavin Newsom signed Assembly Bill No. 2571 into law, prohibiting firearms industry members from advertising to minors.
+
+To proceed, please verify that you are 18 or older.
+            </p>
+            <p class="text-sm text-gray-400 mb-8">
+                This verification is a requirement for viewing this website's content.
+            </p>
+            <button id="age-gate-button" type="button" class="bg-accent-red text-black font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white transition duration-200 text-lg">
+                I Am 18 Years of Age or Older
+            </button>
+        </div>
     </div>
     <script>
         // --- DYNAMIC COURSE DATA STORAGE ---
@@ -197,7 +211,7 @@
                     </a>
                 `).join('')
                 : `<p class="text-center text-xl font-bold text-accent-red py-8">
-                    No dates are currently scheduled for this course. Please contact us to schedule private instruction! 
+                    No dates are currently scheduled for this course. Please check back soon or contact us to schedule future instruction! 
 <br>
 <br>
 Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-accent-red py-8">(949) 547-3698</a><br> or  <br><a href="mailto:TheHarvestFirearmsTraining@outlook.com" class="text-center text-xl font-bold text-accent-red py-8">Email: <u>TheHarvestFirearmsTraining@outlook.com</a></u>
@@ -260,7 +274,7 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
         const contactCard = () => `
             <div class="card bg-card-bg p-6 md:p-8 rounded-lg mb-12 transition duration-300 border-t-4 border-marine-navy shadow-xl">
                 <h2 class="text-2xl font-bold mb-3 text-primary-dark-text">Private & Custom Training Inquiries in Bakersfield, CA</h2> <p class="text-gray-400 mb-6 leading-relaxed">
-                    If you are looking to schedule a private lesson, custom group training, or check availability for a course date not listed, please contact one of our instructors:
+                    If you are looking to schedule a private lesson, custom group training, or check availability for a course date not listed, please contact our lead instructor directly:
                 </p>
                 <div class="space-y-4">
                     <div class="flex items-center text-lg">
@@ -479,9 +493,4 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
     </script>
 
 </body>
-
 </html>
-
-
-
-
