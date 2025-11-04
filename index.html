@@ -67,7 +67,7 @@
                             <a href="#muzzle-loader" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">NRA Muzzle Loader Course</a>
                             <a href="#rso" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">NRA Range Safety Officer (RSO) Course</a>
                             <a href="#basic-rifle" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">NRA Basic Rifle Course</a>
-                            <a href="#fsc" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">NRA Gun Safety Seminar/CA DOJ FSC Course</a>
+                            <a href="#fsc" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">NRA Gun Safety Seminar / CA DOJ FSC Course</a>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                     "Professional Supervision: Instruction is provided by NRA Certified Muzzle Loader Instructors. The firing lines are supervised by certified Range Safety Officers (RSO) and Chief Range Safety Officers (CRSOs) to ensure a safe and productive learning environment."
                 ],
                 dates: [
-		{	date: "Monday December 22nd, 2025 (8:00 AM)",
+		{	date: "Monday November 24th, 2025 (8:00 AM)",
 			link: "https://www.nrainstructors.org/CourseDetails.aspx?Courseid=893942" },
                 ]
             },
@@ -138,7 +138,7 @@
 				]
             },
             'fsc': {
-                title: "NRA Gun Safety Seminar <br> / <br> CA DOJ Firearm Safety Certificate (FSC)",
+                title: "NRA Gun Safety Seminar <br> CA DOJ FSC",
                 description: "This essential Firearm Safety Course is conducted by a California Department of Justice (CA DOJ) Certified Instructor. Completion of this course, including passing the required test, allows us to issue your official Firearm Safety Certificate (FSC), which is mandatory for purchasing or transferring firearms in California. As an option you may elect to skip the instructor led training and just take the test. Study material will be available for you to review before attempting to take the test. If you elect to skip the instruction and only take the test, the Course Fee is only the $25.00 deposit.",
                
  // UPDATED FSC PRICING HERE 
@@ -197,20 +197,24 @@
             let pricingContent;
             if (routeKey === 'fsc' && data.fsc_price) {
                 pricingContent = `
-                    <h3 class="text-xl font-bold mb-3 text-primary-dark-text">NRA Gun Safety Seminar / CA DOJ FSC Course Pricing Options:</h3>
+                    <h3 class="text-xl font-bold mb-3 text-primary-dark-text">NRA Gun Safety Seminar / CA DOJ FSC Test Pricing Options:</h3>
                     <ul class="space-y-2 mb-6">
-                        <li class="text-lg font-semibold flex justify-between items-center bg-light-gray-bg p-3 rounded-lg">
-                            <span>CA DOJ FSC Test Only (No Instruction)</span>
-                            <span class="text-accent-red font-extrabold">$${data.fsc_price.test_only}.00</span>
-                        </li>
-                        <li class="text-lg font-semibold flex justify-between items-center bg-light-gray-bg p-3 rounded-lg">
-                            <span>Instructor-Led Firearm Safety Course Only (No Test)</span>
-                            <span class="text-accent-red font-extrabold">$${data.fsc_price.course_only}.00</span>
-                        </li>
-                        <li class="text-lg font-semibold flex justify-between items-center bg-light-gray-bg p-3 rounded-lg">
-                            <span>Instructor-Led Firearm Safety Course & CA DOJ FSC Test</span>
+			
+			<li class="text-lg font-semibold flex justify-between items-center bg-light-gray-bg p-3 rounded-lg">
+                            <span>Instructor-Led Gun Safety Course & CA DOJ FSC Test</span>
                             <span class="text-primary-dark-text font-extrabold">$${data.fsc_price.course_and_test}.00</span>
+                        </li>                        
+			
+                        <li class="text-lg font-semibold flex justify-between items-center bg-light-gray-bg p-3 rounded-lg">
+                            <span>Instructor-Led Gun Safety Course Only (No Test)</span>
+                            <span class="text-primary-dark-text font-extrabold">$${data.fsc_price.course_only}.00</span>
                         </li>
+
+			<li class="text-lg font-semibold flex justify-between items-center bg-light-gray-bg p-3 rounded-lg">
+                            <span>CA DOJ FSC Test Only (No Instruction)</span>
+                            <span class="text-primary-dark-text font-extrabold">$${data.fsc_price.test_only}.00</span>
+                        </li>
+
                     </ul>
                     <p class="text-sm text-gray-300">Required Deposit: <span class="font-bold text-accent-red">$${data.deposit}.00 non-refundable</span></p>
                     <p class="text-sm text-gray-400">Note: The final price will be determined based on the option you choose at registration.</p><br>
@@ -254,7 +258,7 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                     <div class="card bg-card-bg p-6 md:p-8 rounded-lg mb-8 transition duration-300 hover:shadow-xl border-t-4 border-accent-red">
                         <div class="text-center">
                             ${logoImageTag} </div>
-                        <h2 class="text-2xl font-bold mb-3 text-accent-red">${data.title} Course Overview - Bakersfield, CA</h2> <p class="text-gray-400 mb-6">${data.description}</p>
+                        <h2 class="text-2xl font-bold mb-3 text-accent-red">${data.title} Course Overview <br>Bakersfield, CA</h2> <p class="text-gray-400 mb-6">${data.description}</p>
                         
                         ${pricingContent}
 
@@ -345,7 +349,7 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                     ${homeCourseLink('Muzzle Loader', 'muzzle-loader', 'Learn the safety, history, and marksmanship of black powder Muzzle Loading Rifles under the guidance of NRA Certified Instructors.')}
                     ${homeCourseLink('RSO', 'rso', 'Become a NRA certified Range Safety Officer.')}
                     ${homeCourseLink('Basic Rifle', 'basic-rifle', 'Foundational course for safe rifle use.')}
-                    ${homeCourseLink('NRA Gun Safety / CA DOJ Firearm Safety Certificate (FSC)', 'fsc', 'Essential informational course on Firearm Safety. FSC is a Mandatory certificate for firearm purchase in California.')}
+                    ${homeCourseLink('NRA Gun Safety / CA DOJ Firearm Safety Certificate (FSC)', 'fsc', 'Mandatory certificate for firearm purchase in California.')}
                 </div>
             `,
             'muzzle-loader': () => courseCard('muzzle-loader'),
@@ -496,8 +500,3 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
 
 </body>
 </html>
-
-
-
-
-
