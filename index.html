@@ -4,39 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Harvest Firearms Training | NRA Certified Courses</title>
-   
+    
     <meta name="description" content="The Harvest Firearms Training provides NRA Certified training courses including Basic Rifle, Muzzleloading, RSO, and CA DOJ FSC in Bakersfield, California. Schedule your firearm safety class today.">
     <meta name="keywords" content="NRA certified instructor, The Harvest, Christian firearm training, gun safety class, Bakersfield California, Basic Rifle, Muzzleloading, Range Safety Officer, RSO, CA DOJ FSC">
-   
+    
     <link rel="icon" type="image/png" href="inst-color.jpg">
-   
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Apply Inter font and set base styles */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #1a1a1a;
+            /* Using a dark gray background */
+            background-color: #1a1a1a; 
         }
         /* Custom styles for professional look */
         .card {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
         }
-        /* Marine Corps Theme Colors (still used for utility classes) */
-        /* FIX: Removed .marine-navy class definition to rely entirely on Tailwind utility classes below */
-        /* FIX: Changed marine-scarlet (used by homeCourseLink) to Bright Green */
-        .marine-scarlet { color: #33FF33; } 
+        /* Marine Corps Theme Colors */
+        .marine-navy { color: #003366; }
+        .marine-scarlet { color: #800000; } 
     </style>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary-dark-text': '#e0e0e0', /* Light Gray for main text in the dark theme */
-                        /* FIX: Changed accent-red (used for buttons/borders) to Bright Green */
+                        // BRIGHT GREEN ACCENT
+                        'primary-dark-text': '#e0e0e0', // Light Gray for main text in the dark theme
                         'accent-red': '#33FF33', 
-                        'marine-navy': '#003366', /* Deep Navy Blue */
-                        'light-gray-bg': '#333333', /* Darker background for light-gray classes (e.g., date buttons) */
-                        'card-bg': '#2a2a2a', /* Background for content cards */
+                        'marine-navy': '#003366', // Deep Navy Blue (Header/Footer)
+                        'light-gray-bg': '#333333', // Darker background for light-gray classes (e.g., date buttons)
+                        'card-bg': '#2a2a2a', // Background for content cards
                     }
                 }
             }
@@ -67,7 +67,7 @@
                             <a href="#muzzle-loader" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">NRA Muzzle Loader Course</a>
                             <a href="#rso" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">NRA Range Safety Officer (RSO) Course</a>
                             <a href="#basic-rifle" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">NRA Basic Rifle Course</a>
-                            <a href="#fsc" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">CA DOJ FSC Course</a>
+                            <a href="#fsc" class="nav-link block px-4 py-2 text-sm text-primary-dark-text hover:bg-light-gray-bg hover:text-accent-red rounded-md m-1 transition duration-150" role="menuitem">NRA Gun Safety Seminar/CA DOJ FSC Course</a>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                     "Professional Supervision: Instruction is provided by NRA Certified Muzzle Loader Instructors. The firing lines are supervised by certified Range Safety Officers (RSO) and Chief Range Safety Officers (CRSOs) to ensure a safe and productive learning environment."
                 ],
                 dates: [
-		{	date: "Monday December 22nd, 2025 (8:00 AM)",
+		{	date: "Monday November 24th, 2025 (8:00 AM)",
 			link: "https://www.nrainstructors.org/CourseDetails.aspx?Courseid=893942" },
                 ]
             },
@@ -138,9 +138,16 @@
 				]
             },
             'fsc': {
-                title: "NRA Gun Safety Seminar /<br> CA DOJ Firearm Safety Certificate (FSC)",
+                title: "NRA Gun Safety Seminar <br> CA DOJ Firearm Safety Certificate (FSC)",
                 description: "This essential Firearm Safety Course is conducted by a California Department of Justice (CA DOJ) Certified Instructor. Completion of this course, including passing the required test, allows us to issue your official Firearm Safety Certificate (FSC), which is mandatory for purchasing or transferring firearms in California. As an option you may elect to skip the instructor led training and just take the test. Study material will be available for you to review before attempting to take the test. If you elect to skip the instruction and only take the test, the Course Fee is only the $25.00 deposit.",
-                price: 75, 
+               
+ // UPDATED FSC PRICING HERE 
+                price: 100, // Kept for home page link to show max price
+                fsc_price: {
+                    test_only: 25,
+                    course_only: 75,
+                    course_and_test: 100
+                },
                 deposit: 25, 
                 // LOGO REMOVED
                 logo: '', 
@@ -151,7 +158,9 @@
                     "Mandatory for Purchase: Certificate required by California law to purchase or acquire a handgun, rifle, or shotgun.",
                     "Expert Guidance: Instruction covering safe gun handling, storage, California-specific laws and regulations, and detailed walk throughs and demonstrations of required knowledge."
                 ],
-                dates: []
+                dates: [
+		{date: "Monday December 1st, 2025 (12:00 PM)",
+			link: "https://www.nrainstructors.org/CourseDetails.aspx?Courseid=901794"},]
             }
         };
 
@@ -161,9 +170,9 @@
             const data = COURSE_DATA[routeKey];
             const deposit = data.deposit;
             const dates = data.dates;
-           
+            
             let logoImageTag = '';
-           
+            
             // Check for RSO/CRSO special case
             if (routeKey === 'rso' && data.logo && data.secondaryLogo) {
                 // RSO and CRSO logos side-by-side (using h-48 for bigger size)
@@ -179,10 +188,44 @@
                     <img src="${data.logo}" alt="${data.title} Instructor Logo" class="h-48 w-auto mx-auto mb-4 border-2 border-accent-red rounded-lg p-1">
                 `;
             } // If data.logo is empty (like FSC), logoImageTag is ''
-           
+            
             const depositNote = data.price === data.deposit
                 ? 'The full course fee is required upfront to secure your position.'
                 : 'The remaining balance is due on the first day of the course.';
+
+            // --- Pricing Content Generation (Functional Update Preserved) ---
+            let pricingContent;
+            if (routeKey === 'fsc' && data.fsc_price) {
+                pricingContent = `
+                    <h3 class="text-xl font-bold mb-3 text-primary-dark-text">NRA Gun Safety Seminar / CA DOJ FSC Course Pricing Options:</h3>
+                    <ul class="space-y-2 mb-6">
+                        <li class="text-lg font-semibold flex justify-between items-center bg-light-gray-bg p-3 rounded-lg">
+                            <span>CA DOJ FSC Test Only (No Instruction)</span>
+                            <span class="text-accent-red font-extrabold">$${data.fsc_price.test_only}.00</span>
+                        </li>
+                        <li class="text-lg font-semibold flex justify-between items-center bg-light-gray-bg p-3 rounded-lg">
+                            <span>Instructor-Led Firearm Safety Course Only (No Test)</span>
+                            <span class="text-accent-red font-extrabold">$${data.fsc_price.course_only}.00</span>
+                        </li>
+                        <li class="text-lg font-semibold flex justify-between items-center bg-light-gray-bg p-3 rounded-lg">
+                            <span>Instructor-Led Firearm Safety Course & CA DOJ FSC Test</span>
+                            <span class="text-primary-dark-text font-extrabold">$${data.fsc_price.course_and_test}.00</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-gray-300">Required Deposit: <span class="font-bold text-accent-red">$${data.deposit}.00 non-refundable</span></p>
+                    <p class="text-sm text-gray-400">Note: The final price will be determined based on the option you choose at registration.</p><br>
+                `;
+            } else {
+                // Original pricing logic for all other courses (RSO, Rifle, Muzzle)
+                pricingContent = `
+                    <div class="mb-6 space-y-2">
+                        <p class="text-lg font-semibold">Course Fee: <span class="text-primary-dark-text">$${data.price}.00</span></p>
+                        <p class="text-sm text-gray-300">Required Deposit: <span class="font-bold text-accent-red">$${data.deposit}.00 non-refundable</span></p>
+                        <p class="text-sm text-gray-400">${depositNote}</p>
+                    </div>
+                `;
+            }
+            // --- End Pricing Content Generation ---
 
             // Logic to dynamically generate date links or the "no dates" message
             const dateContent = dates.length > 0
@@ -205,19 +248,15 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         Back to All Courses in Bakersfield, CA
                     </a>
-                   
+                    
                     <h1 class="text-4xl font-extrabold mb-8 text-center text-primary-dark-text">${data.title}</h1>
-               
+                
                     <div class="card bg-card-bg p-6 md:p-8 rounded-lg mb-8 transition duration-300 hover:shadow-xl border-t-4 border-accent-red">
                         <div class="text-center">
                             ${logoImageTag} </div>
                         <h2 class="text-2xl font-bold mb-3 text-accent-red">${data.title} Course Overview - Bakersfield, CA</h2> <p class="text-gray-400 mb-6">${data.description}</p>
-                       
-                        <div class="mb-6 space-y-2">
-                            <p class="text-lg font-semibold">Course Fee: <span class="text-primary-dark-text">$${data.price}.00</span></p>
-                            <p class="text-sm text-gray-300">Required Deposit: <span class="font-bold text-accent-red">$${data.deposit}.00 non-refundable</span></p>
-                            <p class="text-sm text-gray-400">${depositNote}</p>
-                        </div>
+                        
+                        ${pricingContent}
 
                         <h3 class="text-xl font-semibold mb-3 border-b border-gray-600 pb-1 text-primary-dark-text">Course Highlights:</h3>
                         <ul class="list-disc list-inside space-y-3 pl-4 text-gray-400">
@@ -250,7 +289,7 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                 </div>
             `;
         }
-       
+        
         // Contact Card Template (unchanged)
         const contactCard = () => `
             <div class="card bg-card-bg p-6 md:p-8 rounded-lg mb-12 transition duration-300 border-t-4 border-marine-navy shadow-xl">
@@ -264,7 +303,7 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                         <a href="mailto:TheHarvestFirearmsTraining@outlook.com" class="ml-2 text-gray-300 hover:text-accent-red transition duration-150">TheHarvestFirearmsTraining@outlook.com</a>
                     </div>
                     <div class="flex items-center text-lg">
-                        <svg class="w-6 h-6 mr-3 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        <svg class="w-6 h-6 mr-3 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2004/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                         <span class="font-semibold text-primary-dark-text">Phone:</span>
                         <a href="tel:+19495473698" class="ml-2 text-gray-300 hover:text-accent-red transition duration-150">(949) 547-3698</a>
                     </div>
@@ -282,16 +321,16 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                         Your source for NRA Certified Training Courses in Bakersfield, California. Start your training today! 
                     </p>
                 </div>
-               
+                
                 <div class="max-w-3xl mx-auto card bg-card-bg p-8 rounded-xl border-t-4 border-marine-navy shadow-xl mb-12">
                     <div class="flex justify-center items-center space-x-6 mb-6">
                        <img src="inst-color.jpg" alt="NRA Certified Instructor Logo" class="h-48 w-auto border-2 border-accent-red rounded-lg p-1">
-                       
+                        
                         <img src="crso-color.jpg" alt="NRA Chief Range Safety Officer Logo" class="h-48 w-auto border-2 border-accent-red rounded-lg p-1">
                     </div>
 
                     <h2 class="text-3xl font-bold text-primary-dark-text text-center mb-6">Welcome to The Harvest Firearms Training in Bakersfield, Ca</h2>
-                   
+                    
                     <p class="text-lg text-gray-400 mb-6 leading-relaxed">
                         Our team consists of experienced, certified professionals dedicated to teaching safe gun handling for anyone. We provide high-quality NRA-certified instruction focusing on responsibility and skill development for all experience levels, from beginners to advanced range officers.
                     </p>
@@ -301,7 +340,9 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                     </p>
                 </div>
 
-                ${contactCard()} <div class="grid md:grid-cols-2 gap-6"> ${homeCourseLink('Muzzle Loader', 'muzzle-loader', 'Learn the safety, history, and marksmanship of black powder Muzzle Loading Rifles under the guidance of NRA Certified Instructors.')}
+                ${contactCard()}
+                <div class="grid md:grid-cols-2 gap-6">
+                    ${homeCourseLink('Muzzle Loader', 'muzzle-loader', 'Learn the safety, history, and marksmanship of black powder Muzzle Loading Rifles under the guidance of NRA Certified Instructors.')}
                     ${homeCourseLink('RSO', 'rso', 'Become a NRA certified Range Safety Officer.')}
                     ${homeCourseLink('Basic Rifle', 'basic-rifle', 'Foundational course for safe rifle use.')}
                     ${homeCourseLink('CA DOJ FSC', 'fsc', 'Mandatory certificate for firearm purchase in California.')}
@@ -312,14 +353,13 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
             'basic-rifle': () => courseCard('basic-rifle'),
             'fsc': () => courseCard('fsc'),
         };
-       
+        
         function homeCourseLink(title, hash, description) {
-            // NOTE: .marine-scarlet is the class used to set the link color here
             return `
                 <a href="#${hash}" class="block bg-card-bg p-6 rounded-lg card transition duration-300 hover:bg-gray-700 hover:shadow-xl border-t-4 border-accent-red">
                     <h3 class="text-xl font-bold text-primary-dark-text mb-2">${title} Course</h3>
                     <p class="text-gray-400 text-sm mb-4">${description}</p>
-                    <span class="marine-scarlet font-semibold text-sm inline-flex items-center">
+                    <span class="text-accent-red font-semibold text-sm inline-flex items-center">
                         View Details & Dates
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </span>
@@ -332,14 +372,14 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
         const contentDiv = document.getElementById('content');
         const dropdownMenu = document.getElementById('dropdown-menu');
         const dropdownButton = document.getElementById('dropdown-button');
-       
+        
         // Select nav links *after* the DOM is loaded
         let navLinks = [];
 
         // Function to toggle the menu open/closed
         const toggleMenu = (isOpen) => {
             const isCurrentlyOpen = !dropdownMenu.classList.contains('hidden');
-           
+            
             if (isOpen === undefined) {
                 isOpen = !isCurrentlyOpen;
             }
@@ -390,7 +430,7 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
         // Function to render the current page
         const renderPage = () => {
             let hash = window.location.hash.substring(1) || 'home';
-           
+            
             if (!pages[hash]) {
                 hash = 'home';
             }
@@ -426,22 +466,20 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
         document.addEventListener('click', (event) => {
             const isClickInsideButton = dropdownButton.contains(event.target);
             const isClickInsideMenu = dropdownMenu.contains(event.target);
-           
+            
             if (!isClickInsideButton && !isClickInsideMenu && !dropdownMenu.classList.contains('hidden')) {
                 toggleMenu(false);
             }
         });
-       
-        // FIX: This function now runs immediately after the DOM loads
+        
         const initializeApp = () => {
             // Re-select nav links in case the DOM wasn't fully ready before
             navLinks = dropdownMenu.querySelectorAll('.nav-link');
-           
+            
             // Add click listeners to all internal nav links to ensure smooth routing and close menu
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
-                    // Prevent default hash change behavior if we want to manually control it, 
-                    // but for SPA, setting location.hash is the cleanest way
+                    // Setting location.hash is the cleanest way for this SPA structure
                     const targetHash = link.getAttribute('href').substring(1);
                     window.location.hash = targetHash;
                     // renderPage() is called by hashchange, which handles closing the menu
@@ -454,8 +492,6 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
 
         // Initial page load: Run the initialization function when the DOM is ready
         document.addEventListener('DOMContentLoaded', initializeApp);
-        // Fallback for immediate execution if DOMContentLoaded already fired or if just running the script
-        initializeApp();
     </script>
 
 </body>
