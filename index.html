@@ -27,12 +27,12 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary-dark-text': '#e0e0e0', // Light Gray for main text in the dark theme
+                        'primary-dark-text': '#e0e0e0', 
                         'accent-red': '#33FF33', 
 			'accent-scarlet': '#0066CC', 
-                        'marine-navy': '#003366', // Deep Navy Blue (Header/Footer)
-                        'light-gray-bg': '#333333', // Darker background for light-gray classes (e.g., date buttons)
-                        'card-bg': '#2a2a2a', // Background for content cards
+                        'marine-navy': '#003366', 
+                        'light-gray-bg': '#333333', 
+                        'card-bg': '#2a2a2a', 
                     }
                 }
             }
@@ -171,7 +171,6 @@
             
            
             if (routeKey === 'rso' && data.logo && data.secondaryLogo) {
-                // RSO and CRSO logos side-by-side (using h-48 for bigger size)
                 logoImageTag = `
                     <div class="flex justify-center items-center space-x-6 mb-4">
                         <img src="${data.logo}" alt="NRA Range Safety Officer Logo" class="h-48 w-auto border-2 border-accent-red rounded-lg p-1">
@@ -179,7 +178,7 @@
                     </div>
                 `;
             } else if (data.logo) {
-                // Single logo case (using h-48 for bigger size)
+               
                 logoImageTag = `
                     <img src="${data.logo}" alt="${data.title} Instructor Logo" class="h-48 w-auto mx-auto mb-4 border-2 border-accent-red rounded-lg p-1">
                 `;
@@ -387,16 +386,16 @@ All live-fire training is conducted at <a target="_blank" href="https://www.5dog
 
             if (isOpen) {
                 dropdownMenu.classList.remove('hidden');
-                // Move focus to the first focusable element inside the menu for accessibility
+              
                 if (navLinks.length > 0) {
                     navLinks[0].focus();
                 }
             } else {
                 dropdownMenu.classList.add('hidden');
-                // Return focus to the button that opened the menu
+                
                 dropdownButton.focus();
             }
-            // Add or remove an attribute to signal menu state (important for accessibility)
+          
             dropdownButton.setAttribute('aria-expanded', isOpen);
         };
 
@@ -481,6 +480,7 @@ All live-fire training is conducted at <a target="_blank" href="https://www.5dog
 
 </body>
 </html>
+
 
 
 
