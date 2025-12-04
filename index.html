@@ -12,17 +12,13 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Apply Inter font and set base styles */
         body {
             font-family: 'Inter', sans-serif;
-            /* Using a dark gray background */
             background-color: #1a1a1a; 
         }
-        /* Custom styles for professional look */
         .card {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
         }
-        /* Marine Corps Theme Colors */
         .marine-navy { color: #003366; }
         .marine-scarlet { color: #800000; } 
     </style>
@@ -31,7 +27,6 @@
             theme: {
                 extend: {
                     colors: {
-                        // BRIGHT GREEN ACCENT
                         'primary-dark-text': '#e0e0e0', // Light Gray for main text in the dark theme
                         'accent-red': '#33FF33', 
 			'accent-scarlet': '#0066CC', 
@@ -86,7 +81,7 @@
     </footer>
 
     <script>
-        // --- DYNAMIC COURSE DATA STORAGE ---
+        // --- DYNAMIC COURSE DATA ---
         const COURSE_DATA = {
             'muzzle-loader': {
                 title: "NRA CO-OP Basic Muzzleloading Rifle",
@@ -142,7 +137,7 @@
                 title: "NRA Gun Safety Seminar <br> CA DOJ FSC",
                 description: "This essential Firearm Safety Course is conducted by a California Department of Justice (CA DOJ) Certified Instructor. Completion of this course, including passing the required test, allows us to issue your official Firearm Safety Certificate (FSC), which is mandatory for purchasing or transferring firearms in California. As an option you may elect to skip the instructor led training and just take the test. Study material will be available for you to review before attempting to take the test. If you elect to skip the instruction and only take the test, the Course Fee is only the $25.00 deposit.",
                
- // UPDATED FSC PRICING HERE 
+
                 price: 100, // Kept for home page link to show max price
                 fsc_price: {
                     test_only: 25,
@@ -150,9 +145,9 @@
                     course_and_test: 100
                 },
                 deposit: 25, 
-                // LOGO REMOVED
+            
                 logo: '', 
-                secondaryLogo: '', // No secondary logo
+                secondaryLogo: '',
                 features: [
                     "Official Certification: Successfully passing the FSC test allows us to issue your valid CA DOJ Firearm Safety Certificate (FSC).",
                     "FSC Test Administration: The required 30-question, multiple-choice test is administered during the class in Lamont, CA. You may also contact our instructors to schedule a time and location that is conveinent for you to take the test (subject to instructor availability).", 
@@ -165,7 +160,7 @@
             }
         };
 
-        // --- Template Functions for Each Page ---
+    
 
         const courseCard = (routeKey) => {
             const data = COURSE_DATA[routeKey];
@@ -174,7 +169,7 @@
             
             let logoImageTag = '';
             
-            // Check for RSO/CRSO special case
+           
             if (routeKey === 'rso' && data.logo && data.secondaryLogo) {
                 // RSO and CRSO logos side-by-side (using h-48 for bigger size)
                 logoImageTag = `
@@ -188,13 +183,13 @@
                 logoImageTag = `
                     <img src="${data.logo}" alt="${data.title} Instructor Logo" class="h-48 w-auto mx-auto mb-4 border-2 border-accent-red rounded-lg p-1">
                 `;
-            } // If data.logo is empty (like FSC), logoImageTag is ''
+            } 
             
             const depositNote = data.price === data.deposit
                 ? 'The full course fee is required upfront to secure your position.'
                 : 'The remaining balance is due on the first day of the course.';
 
-            // --- Pricing Content Generation (Functional Update Preserved) ---
+            
             let pricingContent;
             if (routeKey === 'fsc' && data.fsc_price) {
                 pricingContent = `
@@ -221,7 +216,7 @@
                     <p class="text-sm text-gray-400">Note: The final price will be determined based on the option you choose at registration.</p><br>
                 `;
             } else {
-                // Original pricing logic for all other courses (RSO, Rifle, Muzzle)
+               
                 pricingContent = `
                     <div class="mb-6 space-y-2">
                         <p class="text-lg font-semibold">Course Fee: <span class="text-primary-dark-text">$${data.price}.00</span></p>
@@ -230,9 +225,8 @@
                     </div>
                 `;
             }
-            // --- End Pricing Content Generation ---
+           
 
-            // Logic to dynamically generate date links or the "no dates" message
             const dateContent = dates.length > 0
                 ? dates.map(d => `
                     <a href="${d.link}" target="_blank" class="block text-center text-lg font-medium bg-light-gray-bg border-b-2 border-accent-red hover:bg-gray-700 text-primary-dark-text transition duration-200 p-3 rounded-md">
@@ -293,8 +287,7 @@ Phone: <a href="tel:+19495473698" class="text-center text-xl font-bold text-acce
                 </div>
             `;
         }
-        
-        // Contact Card Template (unchanged)
+      
         const contactCard = () => `
             <div class="card bg-card-bg p-6 md:p-8 rounded-lg mb-12 transition duration-300 border-t-4 border-marine-navy shadow-xl">
                 <h2 class="text-2xl font-bold mb-3 text-primary-dark-text">Private & Custom Training Inquiries near Bakersfield, CA</h2> <p class="text-gray-400 mb-6 leading-relaxed">
@@ -377,16 +370,14 @@ All live-fire training is conducted at <a target="_blank" href="https://www.5dog
             `;
         }
 
-        // --- Routing and Interaction Logic ---
-
         const contentDiv = document.getElementById('content');
         const dropdownMenu = document.getElementById('dropdown-menu');
         const dropdownButton = document.getElementById('dropdown-button');
         
-        // Select nav links *after* the DOM is loaded
+     
         let navLinks = [];
 
-        // Function to toggle the menu open/closed
+      
         const toggleMenu = (isOpen) => {
             const isCurrentlyOpen = !dropdownMenu.classList.contains('hidden');
             
@@ -409,7 +400,6 @@ All live-fire training is conducted at <a target="_blank" href="https://www.5dog
             dropdownButton.setAttribute('aria-expanded', isOpen);
         };
 
-        // Function to handle keyboard navigation (Focus Trap)
         const handleFocusTrap = (event) => {
             if (dropdownMenu.classList.contains('hidden')) return;
 
@@ -417,7 +407,6 @@ All live-fire training is conducted at <a target="_blank" href="https://www.5dog
             const firstFocusable = focusableElements[0];
             const lastFocusable = focusableElements[focusableElements.length - 1];
 
-            // If the tab key is pressed
             if (event.key === 'Tab') {
                 if (event.shiftKey) { // Shift + Tab
                     if (document.activeElement === firstFocusable) {
@@ -437,7 +426,6 @@ All live-fire training is conducted at <a target="_blank" href="https://www.5dog
             }
         };
 
-        // Function to render the current page
         const renderPage = () => {
             let hash = window.location.hash.substring(1) || 'home';
             
@@ -445,34 +433,24 @@ All live-fire training is conducted at <a target="_blank" href="https://www.5dog
                 hash = 'home';
             }
 
-            // Render the page content
             contentDiv.innerHTML = pages[hash]();
 
-            // Always close the dropdown menu when a page renders
             toggleMenu(false);
-
-            // Update the document title for better user experience and SEO
             const pageTitle = contentDiv.querySelector('h1')?.textContent || 'Home';
             document.title = `The Harvest Firearms Training | ${pageTitle.split(' | ')[0]}`;
 
-            // Scroll to the top of the page on content load
             window.scrollTo(0, 0); 
         };
 
-        // --- Event Listeners and Initialization ---
 
-        // Event listener for hash changes (back/forward navigation, internal links)
         window.addEventListener('hashchange', renderPage);
 
-        // Event listener for the dropdown button
         dropdownButton.addEventListener('click', () => {
             toggleMenu();
         });
 
-        // Event listener for keyboard navigation
         document.addEventListener('keydown', handleFocusTrap);
 
-        // Event listener for clicking anywhere outside the dropdown to close it
         document.addEventListener('click', (event) => {
             const isClickInsideButton = dropdownButton.contains(event.target);
             const isClickInsideMenu = dropdownMenu.contains(event.target);
@@ -483,29 +461,27 @@ All live-fire training is conducted at <a target="_blank" href="https://www.5dog
         });
         
         const initializeApp = () => {
-            // Re-select nav links in case the DOM wasn't fully ready before
+         
             navLinks = dropdownMenu.querySelectorAll('.nav-link');
             
-            // Add click listeners to all internal nav links to ensure smooth routing and close menu
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
-                    // Setting location.hash is the cleanest way for this SPA structure
+                  
                     const targetHash = link.getAttribute('href').substring(1);
                     window.location.hash = targetHash;
-                    // renderPage() is called by hashchange, which handles closing the menu
+                   
                 });
             });
 
-            // Directly render the initial page content (Home or whatever is in the hash)
             renderPage();
         };
 
-        // Initial page load: Run the initialization function when the DOM is ready
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
 
 </body>
 </html>
+
 
 
 
